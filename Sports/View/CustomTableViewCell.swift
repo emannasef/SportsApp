@@ -10,11 +10,21 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellImg: UIImageView!
+    @IBOutlet weak var cellName: UILabel!
+    @IBOutlet weak var gotToYouTube: UIButton!
     
-    @IBOutlet weak var cellTitle: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        //Round image
+        
+       
+        cellImg.layer.cornerRadius = cellImg.frame.height / 2
+        cellImg.layer.masksToBounds = true
+        cellImg.clipsToBounds = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,4 +33,7 @@ class CustomTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+
+    
+  
 }

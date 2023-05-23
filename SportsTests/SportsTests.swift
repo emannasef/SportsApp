@@ -10,6 +10,7 @@ import XCTest
 
 final class SportsTests: XCTestCase {
 
+    var apiFtech = APIFetch()
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -17,20 +18,46 @@ final class SportsTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    
+    func testFetchDataLeagues(){
+        let exp = expectation(description: "waiting Api to load  data")
+        
+        apiFtech.fetchData(url: "https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=8e7a8271ecb0fa21b1dcf5e30d55c51bda2eadf99f709a8d2bb89a6594bdcd7a") {  (root:Root?, err) in
+            
+            if err != nil {
+                XCTFail()
+                XCTAssertNil(root)
+                XCTAssertEqual(root?.result.count,5)
+            }else{
+                XCTAssertNotNil(root)
+                exp.fulfill()
+            }
         }
+        
+        waitForExpectations(timeout: 10)
+        
+    }
+    
+    
+    
+    func testFetchDataUpComming(){
+        let exp = expectation(description: "waiting Api to load  data")
+        
+        apiFtech.fetchData(url: "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=3&from=2023-05-23&to=2023-06-23&APIkey=8e7a8271ecb0fa21b1dcf5e30d55c51bda2eadf99f709a8d2bb89a6594bdcd7a") { (root:LeagueRoot?, err) in
+            
+            if err != nil {
+                XCTFail()
+                XCTAssertNil(root)
+                XCTAssertEqual(root?.result?.count,5)
+            }else{
+                XCTAssertNotNil(root)
+                exp.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 10)
+        
     }
 
 }

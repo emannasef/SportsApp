@@ -1,16 +1,24 @@
 PODS:
+  - Alamofire (5.7.1)
   - Kingfisher (7.6.2)
+  - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Kingfisher (~> 7.0)
+  - ReachabilitySwift
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Kingfisher
+    - ReachabilitySwift
 
 SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: 97e0e9b2406d098fa83635f088b89874aa2fa924
+PODFILE CHECKSUM: a668fac7c330ea656c620b5808542edd0eecd36c
 
 COCOAPODS: 1.12.1

@@ -20,6 +20,7 @@ class SportsCollectionViewController: UICollectionViewController {
 
         sportsImageArr = ["football","basketball","cricket","baseball","tennis","americanFootball"]
         sportsTitleArr = ["Football","Basketball","Cricket","Baseball","Tennis","American Football"]
+        self.navigationItem.title = "Sports"
     }
 
     /*
@@ -56,6 +57,7 @@ class SportsCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let lvc = self.storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesViewController
+        lvc.sportTitle = sportsTitleArr[indexPath.row]
         
         self.navigationController?.pushViewController(lvc, animated: true)
         
