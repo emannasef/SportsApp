@@ -23,8 +23,9 @@ class CustomTableViewCell: UITableViewCell {
        
         cellImg.layer.cornerRadius = cellImg.frame.height / 2
         cellImg.layer.masksToBounds = true
+        cellImg.layer.borderColor = UIColor.blue.cgColor
+        cellImg.layer.borderWidth = 0.7
         cellImg.clipsToBounds = true
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

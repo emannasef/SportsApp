@@ -13,7 +13,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" rowHeight="107" id="KGk-i7-Jjw" customClass="CustomTableViewCell" customModule="Sports" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="383" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="383" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -21,12 +21,12 @@
                         <rect key="frame" x="8" y="3" width="367" height="83"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PI-pO-BpY">
-                                <rect key="frame" x="92" y="28" width="250" height="27.333333333333329"/>
+                                <rect key="frame" x="92" y="28.666666666666671" width="250" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="C3q-Vg-l4o"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
+                                <color key="textColor" red="0.15618005664288123" green="0.13007301215962969" blue="0.53493806504711661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -41,11 +41,11 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fkS-wh-YzG">
-                        <rect key="frame" x="16" y="12" width="65" height="65"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leaguePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="fkS-wh-YzG">
+                        <rect key="frame" x="16" y="9.6666666666666643" width="70" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="65" id="D5z-1C-p9s"/>
-                            <constraint firstAttribute="height" constant="65" id="kJg-QE-hR9"/>
+                            <constraint firstAttribute="width" constant="70" id="D5z-1C-p9s"/>
+                            <constraint firstAttribute="height" constant="70" id="kJg-QE-hR9"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -56,7 +56,7 @@
                     <constraint firstItem="0PI-pO-BpY" firstAttribute="centerY" secondItem="fkS-wh-YzG" secondAttribute="centerY" id="j7b-PD-kIn"/>
                     <constraint firstItem="fkS-wh-YzG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="kii-Dx-bka"/>
                     <constraint firstItem="YBl-M2-5HM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="uWI-Q4-8SO"/>
-                    <constraint firstAttribute="bottom" secondItem="YBl-M2-5HM" secondAttribute="bottom" constant="4" id="xpe-5h-Tw8"/>
+                    <constraint firstAttribute="bottom" secondItem="YBl-M2-5HM" secondAttribute="bottom" constant="10" id="xpe-5h-Tw8"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -68,6 +68,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="leaguePlaceHolder" width="620" height="400"/>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -11,6 +11,7 @@ import XCTest
 final class SportsTests: XCTestCase {
 
     var apiFtech = APIFetch()
+    var details = LeagueDetailsViewController()
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -59,5 +60,22 @@ final class SportsTests: XCTestCase {
         waitForExpectations(timeout: 10)
         
     }
+    
+    
+    
+    func testgetTeam(){
+        details.getTeam()
+        
+        XCTAssertNotNil(details.teamArr)
+        
+      //  var re = details.upCommingArr + details.latestResultArr
+      //  XCTAssertEqual(details.teamArr, re)
+        
+    }
+    
+//    func testdateForCurrentEvents(){
+//        XCTAssertEqual(Utlies.futureTime!,"2023-06-30")
+//    }
 
 }
+

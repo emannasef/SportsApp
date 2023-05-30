@@ -8,18 +8,20 @@
 import UIKit
 import Kingfisher
 class LeaguesViewController: UIViewController {
+    
     var sportTitle  :String = ""
     var arr: [League] = []
-    var apiFetchHandler:APIFetch?
-   var leaguesViewModel:LeaguesViewModel!
+    var leaguesViewModel:LeaguesViewModel?
 
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        self.navigationItem.title = "Leagues"
         tableView.dataSource = self
         tableView.delegate = self
+        
         Utlies.registerCell(tableView: tableView)
         
         if sportTitle == "Football" {
@@ -30,16 +32,12 @@ class LeaguesViewController: UIViewController {
             leaguesViewModel = LeaguesViewModel(apiFetchHandler: APIFetch(),mySport: Constants.fromTennis)
         }else if sportTitle == "Cricket" {
             leaguesViewModel = LeaguesViewModel(apiFetchHandler: APIFetch(),mySport: Constants.fromCricket)
-        
-        }else{
-            leaguesViewModel = LeaguesViewModel(apiFetchHandler: APIFetch(),mySport: "")
         }
         
-        leaguesViewModel.getData()
+        leaguesViewModel?.getData()
 
-        leaguesViewModel.bindResultToView = { [weak self] in
+        leaguesViewModel?.bindResultToView = { [weak self] in
             self?.arr = self?.leaguesViewModel?.res ?? []
-            
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -70,7 +68,7 @@ extension LeaguesViewController : UITableViewDelegate,UITableViewDataSource{
         
         cell.cellImg.kf.setImage(
             with: imgUrl,
-            placeholder: UIImage(named: "placeHolder.png"))
+            placeholder: UIImage(named: "leaguePlaceHolder.png"))
         
         cell.cellImg.layer.cornerRadius = (cell.cellImg.frame.height)/2
         
@@ -79,20 +77,17 @@ extension LeaguesViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let lDvc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsViewController
+       let lDvc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsViewController
+        
+//        let lDvc = self.storyboard?.instantiateViewController(withIdentifier: "Details") as! DetailsViewController
         
         lDvc.insertLeague =  arr[indexPath.row]
         lDvc.leagueId = String(arr[indexPath.row].league_key ?? 0)
         lDvc.sport = sportTitle
         lDvc.fromScreen = "Home"
-        self.navigationController?.pushViewController(lDvc, animated: true)
-
+        lDvc.modalPresentationStyle = .fullScreen
+        self.present(lDvc, animated: true, completion: nil)
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
-    
-    
+
 }
 

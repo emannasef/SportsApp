@@ -11,6 +11,9 @@ class LatestResultCell: UICollectionViewCell {
     
     @IBOutlet weak var finalResult: UILabel!
     
+    @IBOutlet weak var awayName: UILabel!
+    @IBOutlet weak var homeName: UILabel!
+    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var homeTeamImg: UIImageView!
     
     @IBOutlet weak var awayTeamImg: UIImageView!

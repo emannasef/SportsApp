@@ -12,7 +12,7 @@ class APIFetch : APIFetchProtocol{
     
     func fetchData<T:Codable>(url:String,complition : @escaping (T?,Error?) -> () ){
         
-        print("#$%#ResURL",url)
+        print("CallingURL",url)
         
                 AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { response in
                     switch response.result{

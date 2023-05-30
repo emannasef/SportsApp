@@ -25,10 +25,7 @@ class MyCoreData :MyCorDataProtocol{
     
     
     func insertFavLeague(leagueInserted: League){
-
-        //2-
         let entity = NSEntityDescription.entity(forEntityName: "MyLeague", in: manager)
-        //3-
         let league = NSManagedObject(entity: entity!, insertInto: manager)
         league.setValue(leagueInserted.sport, forKey: "sport")
         league.setValue(leagueInserted.league_name, forKey: "league_name")
@@ -49,9 +46,7 @@ class MyCoreData :MyCorDataProtocol{
     }
 
     func getStoredLeagues() -> [League]{
-
         var leagues = [League]()
-
         let fetch = NSFetchRequest<NSManagedObject>(entityName: "MyLeague")
 
         do{
@@ -110,15 +105,9 @@ class MyCoreData :MyCorDataProtocol{
     func isLeagueExist(league : League) -> Bool{
 
         let fetch = NSFetchRequest<NSManagedObject>(entityName: "MyLeague")
-        
-      //  print("leage Key ######",league.league_key)
-
-        // predicate
         let predicate = NSPredicate(format: "league_key == %i", league.league_key ?? 0)
 
         fetch.predicate = predicate
-        
-      //  print("$$$$$$$$$$$$$$$$$$",fetch)
         
         do{
             leaguesArr = try manager.fetch(fetch)

@@ -9,13 +9,14 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class SportsCollectionViewController: UICollectionViewController {
+class SportsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     var sportsTitleArr:[String] = []
     var sportsImageArr:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationItem.title = "Sports"
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         sportsImageArr = ["football","basketball","cricket","baseball","tennis","americanFootball"]
@@ -23,26 +24,12 @@ class SportsCollectionViewController: UICollectionViewController {
         self.navigationItem.title = "Sports"
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return sportsTitleArr.count
     }
 
@@ -58,9 +45,13 @@ class SportsCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let lvc = self.storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesViewController
         lvc.sportTitle = sportsTitleArr[indexPath.row]
-        
         self.navigationController?.pushViewController(lvc, animated: true)
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: UIScreen.main.bounds.size.width/2-100, height:  200 )
     }
 
 

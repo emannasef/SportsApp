@@ -44,8 +44,6 @@ class TeamViewController: UIViewController {
                 for i in self?.res ?? [] {
                     
                     self?.playerArr = i.players ?? []
-                    
-                 //   print(self?.playerArr[0])
                     self?.colectionView.reloadData()
                 
                     self?.teamName.text = i.team_name
@@ -58,12 +56,13 @@ class TeamViewController: UIViewController {
             }
         }
         
-       
-        
         
     }
     
- 
+    @IBAction func backTolastScreen(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     
 
 }
@@ -74,26 +73,27 @@ class TeamViewController: UIViewController {
 extension TeamViewController :  UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return playerArr.count
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return playerArr.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PlayerCollectionViewCell
         
-       let player = playerArr[indexPath.section]
-
-        
-     //   print("playerAtttttttt",playerArr ?? [])
+       let player = playerArr[indexPath.row]
 
         let imgUrl = URL(string: player.player_image ?? "")
 
         cell.playerImage.kf.setImage(
             with: imgUrl,
-            placeholder: UIImage(named: "placeHolder.png"))
+            placeholder: UIImage(named: "personPlaceHolder.png"))
+        
+        cell.playerImage.layer.masksToBounds = true
+        cell.playerImage.layer.cornerRadius = cell.playerImage.frame.height / 2
+        cell.playerImage.clipsToBounds = true
 
         cell.playerName.text = player.player_name
         
@@ -101,8 +101,9 @@ extension TeamViewController :  UICollectionViewDelegate,UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: UIScreen.main.bounds.size.width/2-20 , height:  100 )
+
+        return CGSize(width: UIScreen.main.bounds.size.width/2-20
+                      , height:  80 )
     }
     
     
