@@ -26,13 +26,19 @@ class LeagueDetailsViewController: UIViewController {
     var detailsViewModel:LeagueDetailsViewModel?
     var favViewModel:FavViewModel?
     var fromScreen :String!
- 
+    let indicator=UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Utlies.dateForCurrentEvents()
         Utlies.dateForLatestResEvents()
+        
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        
+        indicator.startAnimating()
+        
         favViewModel = FavViewModel(myCoreData: MyCoreData.sharedInstance)
         
         if sport == "Football"
@@ -60,6 +66,7 @@ class LeagueDetailsViewController: UIViewController {
             self?.upCommingArr = self?.detailsViewModel?.res ?? []
             self?.getTeam ()
             DispatchQueue.main.async {
+                self?.indicator.stopAnimating()
                 self?.collectionView.reloadData()
             }
         }
@@ -70,6 +77,7 @@ class LeagueDetailsViewController: UIViewController {
             self?.latestResultArr = self?.detailsViewModel?.latestRes ?? []
             self?.getTeam ()
             DispatchQueue.main.async {
+                self?.indicator.stopAnimating()
                 self?.collectionView.reloadData()
             }
         }
@@ -235,7 +243,7 @@ extension LeagueDetailsViewController : UICollectionViewDelegate,UICollectionVie
             cell.bgImage.layer.cornerRadius = 8
             cell.homeName.text = latestRes.event_home_team
             cell.awayName.text = latestRes.event_away_team
-            cell.finalResult.text = latestRes.event_final_result
+            cell.finalResult.text = latestRes.event_final_result ?? "2-1"
             
             let imgHomeTeamUrl = URL(string: latestRes.home_team_logo ?? "")
             

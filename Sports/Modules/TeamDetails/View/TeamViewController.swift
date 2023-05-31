@@ -14,7 +14,7 @@ class TeamViewController: UIViewController {
     
     @IBOutlet weak var coachName: UILabel!
     @IBOutlet weak var teamImg: UIImageView!
-    
+    let indicator=UIActivityIndicatorView(style: .large)
     var viewModel:TeamDetailsViewModel?
     
     var teamId:String!
@@ -29,10 +29,12 @@ class TeamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         colectionView.delegate = self
         colectionView.dataSource = self
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        
+        indicator.startAnimating()
         viewModel = TeamDetailsViewModel(apiFetchHandler: APIFetch(), mySport: sport, teamId: teamId)
         
         viewModel?.getData()
@@ -40,7 +42,7 @@ class TeamViewController: UIViewController {
         viewModel?.bindResultToView = { [weak self] in
             self?.res = self?.viewModel?.res
             DispatchQueue.main.async {
-                
+                self?.indicator.stopAnimating()
                 for i in self?.res ?? [] {
                     
                     self?.playerArr = i.players ?? []

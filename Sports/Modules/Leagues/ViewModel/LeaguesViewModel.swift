@@ -26,14 +26,6 @@ class LeaguesViewModel {
 
     }
     
-//    func getData (){
-//
-//        apiFetchHandler.getLeaguesData(fromSport: mySport) { [weak self] (root: Root?) in
-//            self?.res = root?.result
-//
-//        }
-//    }
-    
     
     func getLeagueURL()->String{
         return Constants.bseUrl+mySport+Constants.apiKey

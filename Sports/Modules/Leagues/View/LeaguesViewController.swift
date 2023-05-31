@@ -12,7 +12,7 @@ class LeaguesViewController: UIViewController {
     var sportTitle  :String = ""
     var arr: [League] = []
     var leaguesViewModel:LeaguesViewModel?
-
+    let indicator=UIActivityIndicatorView(style: .large)
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -22,6 +22,10 @@ class LeaguesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        
+        indicator.startAnimating()
         Utlies.registerCell(tableView: tableView)
         
         if sportTitle == "Football" {
@@ -39,6 +43,7 @@ class LeaguesViewController: UIViewController {
         leaguesViewModel?.bindResultToView = { [weak self] in
             self?.arr = self?.leaguesViewModel?.res ?? []
             DispatchQueue.main.async {
+                self?.indicator.stopAnimating()
                 self?.tableView.reloadData()
             }
         }
@@ -78,8 +83,6 @@ extension LeaguesViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
        let lDvc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsViewController
-        
-//        let lDvc = self.storyboard?.instantiateViewController(withIdentifier: "Details") as! DetailsViewController
         
         lDvc.insertLeague =  arr[indexPath.row]
         lDvc.leagueId = String(arr[indexPath.row].league_key ?? 0)

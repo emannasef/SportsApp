@@ -27,13 +27,6 @@ class TeamDetailsViewModel {
         
     }
     
-//    func getData (){
-//        apiFetchHandler.getTeamDetails(teamId: teamId, sport: mySport) { res in
-//            self.res = res
-//        }
-//
-//    }
-    
     func teamURL()->String{
         return Constants.bseUrl+mySport+"&teamId="+teamId+Constants.apiKey
     }

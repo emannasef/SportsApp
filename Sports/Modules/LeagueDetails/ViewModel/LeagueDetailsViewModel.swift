@@ -37,13 +37,6 @@ class LeagueDetailsViewModel{
     }
     
     
-//    func getUpcomingEvents(){
-//        apiFetchHandler.getUpComming(leagueId: myId, sport: sport) { myRsult in
-//            self.res = myRsult
-//        }
-//    }
-    
-    
     func upCommingURL()->String{
         return Constants.bseUrl+sport+"&leagueId="+myId+"&from="+Utlies.currentTime+"&to="+Utlies.futureTime+Constants.apiKey
 
@@ -55,14 +48,6 @@ class LeagueDetailsViewModel{
             self.res = myRes?.result ?? []
         }
     }
-    
-    
-    
-//    func getLatestEvents(){
-//        apiFetchHandler.getLatestResult(leagueId: myId, sport: sport) { myRes in
-//            self.latestRes = myRes
-//        }
-//    }
     
     func latestURL()->String{
          return Constants.bseUrl+sport+"&leagueId="+myId+"&from="+Utlies.pastTime+"&to="+Utlies.myCurrentTime+Constants.apiKey

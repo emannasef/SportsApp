@@ -59,15 +59,12 @@ class FavViewController: UIViewController {
             favArr = favViewModel?.getSoredFavs() ?? []
             tableView.reloadData()
             noFavImg.isHidden = true
-            self.navigationItem.title = "Favourite"
+           
         }else{
             noFavImg.isHidden = false
             noFavImg.image = UIImage(named:"noFav")
-            self.navigationItem.title = "No Favourite Leagues yet"
         }
         
-        //        favArr = favViewModel?.getSoredFavs() ?? []
-        //        tableView.reloadData()
     }
     
     
@@ -127,10 +124,8 @@ extension FavViewController : UITableViewDelegate,UITableViewDataSource{
         if self.favArr.count == 0{
             self.noFavImg.isHidden = false
             self.noFavImg.image = UIImage(named:"noFav")
-            self.navigationItem.title = "No Favourite Leagues yet"
         }else{
             self.noFavImg.isHidden = true
-            self.navigationItem.title = "Favourite"
         }
         tableView.reloadData()
     }
